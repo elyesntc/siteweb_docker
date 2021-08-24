@@ -1,7 +1,7 @@
 version: "3"
 services:
   frontend:
-    image: angular:v2
+    image: elyesntc/angular:v2
     depends_on:
       - backend
     networks:
