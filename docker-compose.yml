@@ -1,0 +1,32 @@
+version: "3"
+services:
+  frontend:
+    image: angular:v2
+    depends_on:
+      - backend
+    networks:
+      - frontend-network
+    ports:
+      - "4200:4200"
+
+  backend:
+    image: elyesntc/springboot:latest
+    ports:
+      - "9001:8080"
+    networks:
+      - backend-network
+      - frontend-network
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql
+    networks:
+      - backend-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=elyes
+      - MYSQL_DATABASE=etudiants  
+
+networks:
+  frontend-network:
+  backend-network:
